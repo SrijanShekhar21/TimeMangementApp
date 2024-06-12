@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit event</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Div to add new event -->
+      <form action="/editTask" method="post" class="eventList2" id="addTask">
+        <input
+          type="text"
+          name="editEventId"
+          value="<%= oldEventId %>"
+          style="display: none"
+        />
+        <div class="d1 d">
+          <input
+            type="text"
+            name="newEventContent"
+            value="<%= oldContent %>"
+            autocomplete="off"
+          />
+        </div>
+        <div class="d2 d">
+          <input
+            type="number"
+            name="newEventPriority"
+            value="<%= oldPriority %>"
+            autocomplete="off"
+          />
+        </div>
+        <div class="d3 d">
+          <button type="submit" class="btn add tooltip">
+            <span class="tooltiptext">Add new Task</span>➕
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

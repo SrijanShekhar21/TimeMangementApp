@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Time Management App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <h1>Event schedule and planner</h1>
+      </div>
+
+      <div class="eventFix">
+        <div class="d1 d">
+          <span id="item.id" class="eventContent click">Event</span>
+        </div>
+        <div class="d2 d">
+          <span id="item.id" class="eventPriority click"> Priority</span>
+        </div>
+        <div class="d3 d">
+          <form class="fixForm">
+            <button class="btn add tooltip plus">
+              <a href="#addTask" style="text-decoration: none"
+                ><span class="tooltiptext">Add new Task</span>➕</a
+              >
+            </button>
+            <button
+              class="btn sorter add tooltip sorting"
+              formaction="/sort"
+              formmethod="post"
+            >
+              <span class="tooltiptext">Sort by Priority</span>↕️
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- This div will keep replicating on basis of number of data in Database -->
+      <!-- for loop{ -->
+      <% for(let event of eventItems){ %>
+      <div class="eventList eventItem">
+        <div class="d1 d">
+          <span id="eventCont<%= event.id %>" class="eventContent"
+            ><%= event.content %></span
+          >
+        </div>
+
+        <div class="d2 d">
+          <span id="eventPrio<%= event.id %>" class="eventPriority"
+            ><%= event.priority %></span
+          >
+        </div>
+
+        <div class="d3 d">
+          <form class="fixForm" method="post">
+            <input
+              type="text"
+              name="editEventId"
+              value="<%= event.id %>"
+              style="display: none"
+            />
+            <button
+              class="btn add tooltip pencil"
+              formaction="/edit"
+              id="edit<%= event.id %>"
+            >
+              <span class="tooltiptext">Edit Task</span>✏️
+            </button>
+            <button
+              class="btn add tooltip tick"
+              formaction="/done"
+              id="remove<%= event.id %>"
+            >
+              <span class="tooltiptext">Delete Task</span>✔️
+            </button>
+          </form>
+        </div>
+      </div>
+      <% } %>
+      <!-- loop end} -->
+    </div>
+
+    <div class="container">
+      <!-- Div to add new event -->
+      <form action="/new" method="post" class="eventList2" id="addTask">
+        <div class="d1 d">
+          <input
+            type="text"
+            name="newEventContent"
+            placeholder="New Item"
+            autocomplete="off"
+          />
+        </div>
+        <div class="d2 d">
+          <input
+            type="number"
+            name="newEventPriority"
+            placeholder="Set Priority"
+            autocomplete="off"
+          />
+        </div>
+        <div class="d3 d">
+          <button type="submit" class="btn add tooltip plus">
+            <span class="tooltiptext">Add new Task</span>➕
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
